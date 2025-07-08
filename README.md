@@ -1,4 +1,4 @@
-# Calculator App
+# Calculator App - Ahmed Waleed Task 2
 
 A simple calculator application built with Node.js and Express. It supports basic operations such as addition, subtraction, multiplication, and division. The app has a clean and responsive front-end interface built with HTML, CSS, and JavaScript.
 
