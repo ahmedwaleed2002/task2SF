@@ -91,7 +91,8 @@ button:active {
 .equals {
     background-color: #4caf50;
     color: white;
-    grid-column: 3 / span 2;
+    grid-column: 1 / span 4;
+    margin-top: 2px;
 }
 
 .equals:hover {
