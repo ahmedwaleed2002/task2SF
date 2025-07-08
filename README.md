@@ -29,17 +29,84 @@ A simple calculator application built with Node.js and Express. It supports basi
 
 4. Open your browser and go to http://localhost:3000 to use the calculator.
 
-## How `require` Works in Node.js
+## Understanding `require` in Node.js
 
-In this project, we use `require('./calculator')` to import the calculator module into our main application. This allows us to use the functions defined in the calculator.js file in our server logic.
+### What is `require`?
 
-The calculator module exports four functions:
-- `add(a, b)`: Adds two numbers
-- `subtract(a, b)`: Subtracts the second number from the first
-- `multiply(a, b)`: Multiplies two numbers
-- `divide(a, b)`: Divides the first number by the second (with error handling for division by zero)
+In Node.js, `require` is a built-in function used to include modules from external files or packages. It's the primary way to import functionality from other files or third-party libraries into your current file.
 
-These functions are then used in the server.js file to perform calculations based on user input from the front-end.
+### How `require` Works in Node.js
+
+When you call `require('./calculator')` in a Node.js application, the following steps occur:
+
+1. **Resolution**: Node.js resolves the path to the module:
+   - If the path begins with `./` or `../`, it's treated as a relative path
+   - If the path doesn't have a prefix, Node.js looks in `node_modules` directory
+   - Node.js adds `.js`, `.json`, or `.node` extension if not specified
+
+2. **Loading**: Node.js loads the file content:
+   - For `.js` files, the code is parsed as JavaScript
+   - For `.json` files, the content is parsed as JSON
+   - For `.node` files, the content is loaded as a compiled addon
+
+3. **Wrapping**: Node.js wraps the code in a function to create a private scope:
+   ```javascript
+   (function(exports, require, module, __filename, __dirname) {
+     // Your module code
+   });
+   ```
+
+4. **Execution**: The wrapped code is executed, and the module's exports are populated
+
+5. **Caching**: Node.js caches the module to avoid re-loading if required again
+
+6. **Return**: The `module.exports` object is returned to the caller
+
+### Module Exports in Our Calculator App
+
+In our calculator application, we use the module system as follows:
+
+**calculator.js (Module)**:
+```javascript
+// Define functions
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const divide = (a, b) => {
+    if (b === 0) throw new Error("Cannot divide by zero");
+    return a / b;
+};
+
+// Export the functions
+module.exports = {
+    add,
+    subtract,
+    multiply,
+    divide
+};
+```
+
+**server.js (Consumer)**:
+```javascript
+// Import the calculator module
+const calculator = require('./calculator');
+
+// Use the imported functions
+calculator.add(5, 3);  // Returns 8
+```
+
+### `module.exports` vs `exports`
+
+- `module.exports` is the object that's returned from `require()` calls
+- `exports` is a reference to `module.exports` that can be used as a shorthand
+- If you assign a new value to `exports`, it breaks the reference to `module.exports`
+
+### Benefits of Node.js Module System
+
+1. **Code Organization**: Separate functionality into different files
+2. **Reusability**: Use the same code in multiple places
+3. **Encapsulation**: Keep implementation details private
+4. **Dependency Management**: Clearly define and manage dependencies
 
 ## Project Structure
 

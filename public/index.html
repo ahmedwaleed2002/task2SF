@@ -3,35 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator App</title>
+    <title>Advanced Calculator App</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <div class="calculator-container">
-        <h1>Simple Calculator</h1>
+        <h1>Advanced Calculator</h1>
         <div class="calculator">
             <div class="display">
                 <input type="text" id="result" readonly>
             </div>
             <div class="buttons">
                 <button class="clear" id="clear">C</button>
-                <button class="operator" data-op="/">&divide;</button>
+                <button class="operator" data-op="/"><i class="fas fa-divide"></i></button>
                 <button class="number" data-num="7">7</button>
                 <button class="number" data-num="8">8</button>
                 <button class="number" data-num="9">9</button>
-                <button class="operator" data-op="*">&times;</button>
+                <button class="operator" data-op="*"><i class="fas fa-times"></i></button>
                 <button class="number" data-num="4">4</button>
                 <button class="number" data-num="5">5</button>
                 <button class="number" data-num="6">6</button>
-                <button class="operator" data-op="-">-</button>
+                <button class="operator" data-op="-"><i class="fas fa-minus"></i></button>
                 <button class="number" data-num="1">1</button>
                 <button class="number" data-num="2">2</button>
                 <button class="number" data-num="3">3</button>
-                <button class="operator" data-op="+">+</button>
+                <button class="operator" data-op="+"><i class="fas fa-plus"></i></button>
                 <button class="number" data-num="0">0</button>
                 <button class="decimal" data-num=".">.</button>
-                <button class="equals" id="equals">=</button>
+                <button class="equals" id="equals"><i class="fas fa-equals"></i></button>
             </div>
+        </div>
+        <div class="footer">
+            <p>Created with Node.js and Express</p>
         </div>
     </div>
     <script src="script.js"></script>
